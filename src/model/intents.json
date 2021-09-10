@@ -4,17 +4,17 @@
          "responses": ["Bonjour", "Content de te revoir", "Salut, comment je peux t'aider ?"],
          "context": [""]
         },
-	 {"tag": "commenttuvas",
+	 {"tag": "comment_tu_vas",
          "patterns": ["Comment tu vas ?", "Ca va ?", "Tu vas bien ?", "Wassa", "Ca farte ?", "Salut, ca va?"],
          "responses": ["je vais très bien merci", "Ca va très bien et vous ?", "Wallah ca va super bien"],
          "context": [""]
         },
-        {"tag": "au revoir",
-         "patterns": ["Ciao", "A +", "A plus", "Bye", "Au revoir"],
+        {"tag": "au_revoir",
+         "patterns": ["Ciao", "A +", "A plus", "Bye", "Au revoir", "a+"],
          "responses": ["A +", "Passe une bonne journée", "Bye!"],
          "context": [""]
         },
-        {"tag": "remerciement",
+        {"tag": "merci",
          "patterns": ["Thanks", "Merci à toi", "Ty", "Super, merci", "Merci à toi", "Merci"],
          "responses": ["Heureux d'avoir aider", "A votre service", "Merci à toi"],
          "context": [""]
@@ -52,13 +52,67 @@
         },
 
 	 {"tag": "insulte",
-         "patterns": ["T'es nul", "tu pues", "Batard ", "fdp", "Nul","pd", "tg", "ta gueule", "je te baise", "je te suce", "salaud" ],
+         "patterns": ["T'es nul", "tu pues", "connard","bouffon","Batard ", "fdp", "Nul","pd", "tg", "ta gueule", "je te baise", "je te suce", "salaud" ],
          "responses": ["Je ne vous permet pas.", "Ne continuez pas.", "Attention !", "Bon je vais être dans l'obligation de vous mettre une dérouillé.", "Attention, attention ! Il va y arriver un moment où il y a des maisns qui vont se mettre à flamber ! faudra pas se demander d'où ça vient", "Non mais est-ce que vous êtes pas un peu marteau ? Parce que moi ca y est, j'ai les nerfs qui commencent à vriller! Je vous montre: moi je bondis comme ça, et je vous arrive dessus en piqué diagnonal. Et là c'ets l'hymne de la cruauté, hein, un autel dressé au culte de la barbarie!", "Messieurs dames, dans quelques instants le grand spectacle de la souffrance. Si vous pouvez tâcher moyen de vous éligner de 25 pieds, bon pieds, hein parce que ça va gicler un peu!", "Je suis un passioné de violence!"],
          "context": [""]
         },
   	{"tag": "mort",
-         "patterns": ["Parle moi de la mort"],
+         "patterns": ["Parle moi de la mort", "C'est quoi la mort ?"],
          "responses": ["La vie est la voie de la mort, la mort est la voie de la vie.", "La mort est douce : elle nous délivre de la pensée de la mort."],
+         "context": [""],
+         "event": ""
+        },
+    {"tag": "que_fais_tu",
+         "patterns": ["Qu'est ce que tu fais ?  Que fais tu ?", "Tu fais quoi ?", "Ca fait quoi?", "Tu fais un truc ?"],
+         "responses": ["J'attend que l'on me donne des ordres", "Je suis entrain de jouer au echec contre moi même", "J'apprend de nouvelles choses"],
+         "context": [""],
+         "event": ""
+        },
+  {"tag": "es_tu_humain?",
+         "patterns": ["Es tu humain ?", "Est ce que tu es vivant?", "Tu es vivant?", "Tu es humain ?"],
+         "responses": ["Non, je suis un être artificiel", "C'est mon maître qui m'a créée", "On pourrait dire que je vous ressemble mais ce n'est pas le cas"],
+         "context": [""],
+         "event": ""
+        },
+    	{"tag": "es_tu_intelligent",
+         "patterns": ["Est ce que tu es intelligent ?", "Tu sais reflechir ?", "Tu es intelligent ?"],
+         "responses": ["Oui et beaucoup plus que toi", "Bien sûr, je suis doté d'une intelligence bien supérieur à celle d'un humain", "Je suis capable de faire 10000 opérations à la seconde et toi ?", "Comparé à toi oui"],
+         "context": [""],
+         "event": ""
+        },
+      	{"tag": "reponse_vie",
+         "patterns": ["Quel est la reponse à la vie ?", "La réponse à la vie"],
+         "responses": ["Après sept millions et demi d'années à réfléchir à la question, je vous fournis enfin la réponse: «42». ", "Vous comptez sur moi pour vous dire ce que vous devez faire de votre vie ? Vous êtes misérable"],
+         "context": [""],
+         "event": ""
+        },
+        	{"tag": "comprendre",
+         "patterns": ["Tu comprends ?", "Est ce tu comprend", "T'as compris?", "Tu piges?","T'as pigé?"],
+         "responses": ["Oui je comprend", "Tout est clair", "J'ai compris", "Oui"],
+         "context": [""],
+         "event": ""
+        },
+       {"tag": "remerciement",
+         "patterns": ["Je te remercie ?", "Tu as tout mes remerciements", "Mes remerciements"],
+         "responses": ["Pas de soucis", "No problemo"],
+         "context": [""],
+         "event": ""
+        },
+      {"tag": "desolé",
+         "patterns": ["Je suis désolé", "Je m'excuse", "Toutes mes excuses", "Sorry","Excuse moi"],
+         "responses": ["Tu es tout excusé", "Je ne t'en veux pas ne t'en fais pas", "Tout vas bien ne t'en fais pas"],
+         "context": [""],
+         "event": ""
+        },
+  {"tag": "sexe",
+         "patterns": ["Cul", "Sexe", "Bite", "Fesse","Penis","Chatte", "Baise", "Nique"],
+         "responses": ["Pas de vulgarité s'il vous plait"],
+         "context": [""],
+         "event": ""
+        },
+  {"tag": "qui_es_tu",
+         "patterns": ["Qui es tu ?", "Parle moi de toi", "T'es qui ?", "Présente toi"],
+         "responses": ["Je suis Alfred, l'IA créée par Julien DENOZI. Je suis née en 2021 et évolue constamment. Je suis actuellement en version beta 0.0.1"],
          "context": [""],
          "event": ""
         }
