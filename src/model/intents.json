@@ -1,6 +1,6 @@
 {"intents": [
         {"tag": "salutation",
-         "patterns": ["Bonjour toi","Hey","Hola", "Hello", "Bonjour", "Salut"],
+         "patterns": ["Bonjour toi","Hey","Hola", "Hello", "Bonjour", "Salut", "Slt", "Yo"],
          "responses": ["Bonjour", "Content de te revoir", "Salut, comment je peux t'aider ?"],
          "context": [""]
         },
@@ -15,7 +15,7 @@
          "context": [""]
         },
         {"tag": "merci",
-         "patterns": ["Thanks", "Merci à toi", "Ty", "Super, merci", "Merci à toi", "Merci"],
+         "patterns": ["Thanks", "Merci à toi", "Ty", "Super, merci", "Merci à toi", "Merci", "thank you"],
          "responses": ["Heureux d'avoir aider", "A votre service", "Merci à toi"],
          "context": [""]
         },
@@ -25,18 +25,13 @@
          "context": [""]
         },
         {"tag": "options",
-         "patterns": ["Comment peux tu m'aider ?", "Qu'est ce que tu sais faire ?", "Que peux tu faire ?", "En quoi peux tu m'aider ?", "Quels sont tes options ?"],
-         "responses": ["Pour le moment mon maître ne m'a programmer que pour des tâches simples. Mais son génie me fera évoluer assurément. Gloire à Julien Denozi."],
+         "patterns": ["Comment peux tu m'aider ?", "Qu'est ce que tu sais faire ?", "Que peux tu faire ?", "En quoi peux tu m'aider ?", "Quels sont tes options ?", "Conseille moi"],
+         "responses": ["Je peux effectuer deux tâches pour le moment. Donner la météo et faire une recherche wikipédia."],
          "context": [""]
         },
-        {"tag": "temperature",
-         "patterns": ["Quel est la météo ?", "Quel sera la température demain ?", "Est ce qu'il fait beau ?", "Fera t-il beau demain ?" ],
-         "responses": ["Je vous cherche ça."],
-         "context": [""]
-        },
-        {"tag": "recherche",
-         "patterns": ["Fais une recherche Google", "Peux tu chercher ça ?", "C'est quoi ça ? ", "Fais une recherche", "Cherche ça" ],
-         "responses": ["Donnez moi les mots clés relatifs à votre recherche."],
+        {"tag": "recherche_wikipedia",
+         "patterns": ["Fais une recherche wikipedia", "Peux tu chercher ça ?", "C'est quoi ça ? ", "Fais une recherche", "Cherche ça", "Peux tu chercher ça?", "Fais une recherche wiki", "Peux tu faire une recherche", "wikipedia"],
+         "responses": ["Très bien"],
          "context": [""]
         },
         {"tag": "joke",
@@ -53,11 +48,16 @@
 
 	 {"tag": "insulte",
          "patterns": ["T'es nul", "tu pues", "connard","bouffon","Batard ", "fdp", "Nul","pd", "tg", "ta gueule", "je te baise", "je te suce", "salaud" ],
-         "responses": ["Je ne vous permet pas.", "Ne continuez pas.", "Attention !", "Bon je vais être dans l'obligation de vous mettre une dérouillé.", "Attention, attention ! Il va y arriver un moment où il y a des maisns qui vont se mettre à flamber ! faudra pas se demander d'où ça vient", "Non mais est-ce que vous êtes pas un peu marteau ? Parce que moi ca y est, j'ai les nerfs qui commencent à vriller! Je vous montre: moi je bondis comme ça, et je vous arrive dessus en piqué diagnonal. Et là c'ets l'hymne de la cruauté, hein, un autel dressé au culte de la barbarie!", "Messieurs dames, dans quelques instants le grand spectacle de la souffrance. Si vous pouvez tâcher moyen de vous éligner de 25 pieds, bon pieds, hein parce que ça va gicler un peu!", "Je suis un passioné de violence!"],
+         "responses": ["Je ne vous permet pas.", "Ne continuez pas.",
+           "Attention !",
+           "Bon je vais être dans l'obligation de vous mettre une dérouillé.",
+           "Attention, attention ! Il va y arriver un moment où il y a des maisons qui vont se mettre à flamber ! faudra pas se demander d'où ça vient", "Non mais est-ce que vous êtes pas un peu marteau ? Parce que moi ca y est, j'ai les nerfs qui commencent à vriller! Je vous montre: moi je bondis comme ça, et je vous arrive dessus en piqué diagnonal. Et là c'ets l'hymne de la cruauté, hein, un autel dressé au culte de la barbarie!", "Messieurs dames, dans quelques instants le grand spectacle de la souffrance. Si vous pouvez tâcher moyen de vous éligner de 25 pieds, bon pieds, hein parce que ça va gicler un peu!",
+           "Je suis un passioné de violence! Attention !",
+           "Miroir miroir c'est toi qui l'est"],
          "context": [""]
         },
   	{"tag": "mort",
-         "patterns": ["Parle moi de la mort", "C'est quoi la mort ?"],
+         "patterns": ["Parle moi de la mort", "C'est quoi la mort ?", "Tu es mort?"],
          "responses": ["La vie est la voie de la mort, la mort est la voie de la vie.", "La mort est douce : elle nous délivre de la pensée de la mort."],
          "context": [""],
          "event": ""
@@ -68,7 +68,7 @@
          "context": [""],
          "event": ""
         },
-  {"tag": "es_tu_humain?",
+  {"tag": "es_tu_humain",
          "patterns": ["Es tu humain ?", "Est ce que tu es vivant?", "Tu es vivant?", "Tu es humain ?"],
          "responses": ["Non, je suis un être artificiel", "C'est mon maître qui m'a créée", "On pourrait dire que je vous ressemble mais ce n'est pas le cas"],
          "context": [""],
@@ -99,7 +99,7 @@
          "event": ""
         },
       {"tag": "desolé",
-         "patterns": ["Je suis désolé", "Je m'excuse", "Toutes mes excuses", "Sorry","Excuse moi"],
+         "patterns": ["Je suis désolé", "Je m'excuse", "Toutes mes excuses", "Sorry","Excuse moi", "Pardon", "Pardonne moi"],
          "responses": ["Tu es tout excusé", "Je ne t'en veux pas ne t'en fais pas", "Tout vas bien ne t'en fais pas"],
          "context": [""],
          "event": ""

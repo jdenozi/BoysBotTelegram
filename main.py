@@ -6,8 +6,13 @@ import requests
 import re
 from src.chat import chatbot_response
 from src.weather import get_weather
+from src.wikipedia_search import search_on_wikipedia
 
 TELEGRAM_API_KEY = os.environ.get("TELEGRAM_API_KEY")
+MODEL_PATH = os.getcwd() + '/src//model/chatbot_model.h5'
+INTENTS_PATH = os.getcwd() + '/src/model/intents.json'
+WORDS_PATH = os.getcwd() + '/src/model/words.pkl'
+CLASSES_PATH = os.getcwd() + '/src/model/classes.pkl'
 
 
 class BotHandler:
@@ -50,7 +55,7 @@ class BotHandler:
             return False
 
 
-bot = BotHandler(TELEGRAM_TOKEN_API)
+bot = BotHandler(TELEGRAM_API_KEY)
 
 
 def main():
@@ -89,31 +94,66 @@ def main():
                 if bot.check_msg_for_bot(first_chat_text) is True:
                     first_chat_text = re.split("^@[a-zA-Z]*", first_chat_text)[1]
 
-                    intent, response = chatbot_response(first_chat_text)
+                    intent, response = chatbot_response(first_chat_text, MODEL_PATH, INTENTS_PATH, WORDS_PATH, CLASSES_PATH)
+
                     if intent[0]["intent"] == "meteo":
-                        bot.send_message(first_chat_id, response)
-                        bot.send_message(first_chat_id, "Pouvez vous me donner le nom de la ville ?")
-                        new_offset = first_update_id + 1
+                        first_chat_id, first_chat_text, new_offset = send_meteo(first_chat_id, first_chat_text,
+                                                                                first_update_id, new_offset, response)
+                    if intent[0]["intent"] == "recherche_wikipedia":
+                        first_chat_id, first_chat_text, new_offset = send_result_research_wikipedia(first_chat_id,
+                                                                                                    first_chat_text,
+                                                                                                    first_update_id,
+                                                                                                    new_offset,
+                                                                                                    response)
 
-                        receive_message = False
-                        while receive_message is False:
-                            updates = bot.get_updates(new_offset)
-                            for current_update in updates:
-                                first_update_id = current_update['update_id']
-
-                                if 'message' in current_update:
-                                    if 'text' not in current_update['message']:
-                                        first_chat_text = 'New member'
-                                    else:
-                                        first_chat_text = current_update['message']['text']
-                                        first_chat_id = current_update['message']['chat']['id']
-                                        weather_response = get_weather(first_chat_text)
-                                        bot.send_message(first_chat_id, weather_response)
-                                        receive_message = True
                     else:
                         print(response)
                         bot.send_message(first_chat_id, response)
                         new_offset = first_update_id + 1
+
+
+def send_result_research_wikipedia(first_chat_id, first_chat_text, first_update_id, new_offset, response):
+    bot.send_message(first_chat_id, response)
+    bot.send_message(first_chat_id, "Pouvez vous me donner le mot clé de votre recherche?")
+    new_offset = first_update_id + 1
+    receive_message = False
+    while receive_message is False:
+        updates = bot.get_updates(new_offset)
+        for current_update in updates:
+            first_update_id = current_update['update_id']
+
+            if 'message' in current_update:
+                if 'text' not in current_update['message']:
+                    first_chat_text = 'New member'
+                else:
+                    first_chat_text = current_update['message']['text']
+                    first_chat_id = current_update['message']['chat']['id']
+                    weather_response = search_on_wikipedia(first_chat_text)
+                    bot.send_message(first_chat_id, weather_response)
+                    receive_message = True
+    return first_chat_id, first_chat_text, new_offset
+
+
+def send_meteo(first_chat_id, first_chat_text, first_update_id, new_offset, response):
+    bot.send_message(first_chat_id, response)
+    bot.send_message(first_chat_id, "Pouvez vous me donner le nom de la ville ?")
+    new_offset = first_update_id + 1
+    receive_message = False
+    while receive_message is False:
+        updates = bot.get_updates(new_offset)
+        for current_update in updates:
+            first_update_id = current_update['update_id']
+
+            if 'message' in current_update:
+                if 'text' not in current_update['message']:
+                    first_chat_text = 'New member'
+                else:
+                    first_chat_text = current_update['message']['text']
+                    first_chat_id = current_update['message']['chat']['id']
+                    weather_response = get_weather(first_chat_text)
+                    bot.send_message(first_chat_id, weather_response)
+                    receive_message = True
+    return first_chat_id, first_chat_text, new_offset
 
 
 if __name__ == '__main__':
