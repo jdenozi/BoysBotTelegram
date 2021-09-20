@@ -24,3 +24,12 @@ class TestDatabase(unittest.TestCase):
         res = database.drop_event_planning_by_title("test")
         self.assertTrue(res)
 
+    def test_drop_event_planning(self):
+        database = Database()
+        res = database.drop_event_planning_by_title("test")
+        self.assertTrue(res)
+
+    def test_list_event_planning(self):
+        database = Database()
+        for item in database.get_event_planning_db().find():
+            print(item)
