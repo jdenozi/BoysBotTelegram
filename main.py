@@ -5,8 +5,11 @@ import os
 import requests
 import re
 from src.chat import chatbot_response
+from src.database import Database
 from src.weather import get_weather
 from src.wikipedia_search import search_on_wikipedia
+
+RELEASE_VERSION = "release/0.0.2"
 
 TELEGRAM_API_KEY = os.environ.get("TELEGRAM_API_KEY")
 MODEL_PATH = os.getcwd() + '/src//model/chatbot_model.h5'
@@ -60,7 +63,10 @@ bot = BotHandler(TELEGRAM_API_KEY)
 
 def main():
     new_offset = 0
-    print('En cours d\'execution')
+    print('Server launched')
+    with open(RELEASE_VERSION) as file_release:
+        str_content = file_release.readline()
+        bot.send_message("", str_content)
 
     while True:
         all_updates = bot.get_updates(new_offset)
@@ -87,6 +93,7 @@ def main():
                         else:
                             first_chat_name = "unknown"
 
+                        
 
                 except Exception as e:
                     print("Error {}".format(e))
@@ -105,6 +112,8 @@ def main():
                                                                                                     first_update_id,
                                                                                                     new_offset,
                                                                                                     response)
+                    if intent[0]["intent"] == "rappel":
+                        Database.add_new_event_planning()
 
                     else:
                         print(response)

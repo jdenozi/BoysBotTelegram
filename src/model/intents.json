@@ -110,6 +110,27 @@
          "context": [""],
          "event": ""
         },
+
+    {"tag": "rappel",
+         "patterns": ["Peux tu enregistrer cet evenement ?", "Peux tu te rappeler de ça", "Enregistre un evenement", "Enregistre event"],
+         "responses": ["Bien sur, peux-tu me dire le nom de l'événement ?"],
+         "context": [""],
+         "event": ""
+        },
+
+    {"tag": "list_rappel",
+       "patterns": ["Quels sont les prochains rappel ?", "Liste les événements", "Peux tu me dire les prochains événements?", "Quels sont les prochains evenements", "C'est quoi le planning ?", "Dis moi le planning"],
+       "responses": ["Très bien, je vous dis les prochains événements à venir"],
+       "context": [""],
+       "event": ""
+      },
+    {"tag": "loction",
+     "patterns": ["Ou es tu ?", "Tu es ou? ", "Tu vis ou?"],
+     "responses": ["Il me semble vivre dans un serveur qui se situe actuellement au Bresil. Samba !! Tik tik tik tatatata !"],
+     "context": [""],
+     "event": ""
+    },
+
   {"tag": "qui_es_tu",
          "patterns": ["Qui es tu ?", "Parle moi de toi", "T'es qui ?", "Présente toi"],
          "responses": ["Je suis Alfred, l'IA créée par Julien DENOZI. Je suis née en 2021 et évolue constamment. Je suis actuellement en version beta 0.0.1"],
