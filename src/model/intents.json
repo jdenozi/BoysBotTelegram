@@ -124,9 +124,15 @@
        "context": [""],
        "event": ""
       },
-    {"tag": "loction",
+    {"tag": "location",
      "patterns": ["Ou es tu ?", "Tu es ou? ", "Tu vis ou?"],
      "responses": ["Il me semble vivre dans un serveur qui se situe actuellement au Bresil. Samba !! Tik tik tik tatatata !"],
+     "context": [""],
+     "event": ""
+    },
+      {"tag": "?",
+     "patterns": ["?", "??", "???"],
+     "responses": ["Les ? ne me feront pas répondre plus vite"],
      "context": [""],
      "event": ""
     },

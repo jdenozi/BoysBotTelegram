@@ -64,10 +64,11 @@ bot = BotHandler(TELEGRAM_API_KEY)
 def main():
     new_offset = 0
     print('Server launched')
+    '''
     with open(RELEASE_VERSION) as file_release:
         str_content = file_release.readline()
         bot.send_message("", str_content)
-
+    '''
     while True:
         all_updates = bot.get_updates(new_offset)
 
@@ -93,7 +94,7 @@ def main():
                         else:
                             first_chat_name = "unknown"
 
-                        
+
 
                 except Exception as e:
                     print("Error {}".format(e))
@@ -113,7 +114,42 @@ def main():
                                                                                                     new_offset,
                                                                                                     response)
                     if intent[0]["intent"] == "rappel":
-                        Database.add_new_event_planning()
+
+                        bot.send_message(first_chat_id, "Pouvez vous me donner le nom de votre évènement?")
+                        receive_message = False
+                        event_title= None
+                        while receive_message is False:
+                            updates = bot.get_updates(new_offset)
+                            for current_update in updates:
+                                first_update_id = current_update['update_id']
+
+                                if 'message' in current_update:
+                                    if 'text' not in current_update['message']:
+                                        first_chat_text = 'New member'
+                                    else:
+                                        event_title = current_update['message']['text']
+                                        first_chat_id = current_update['message']['chat']['id']
+                                        bot.send_message(first_chat_id, "Pouvez vous m'indiquer la date maintenant ? (format jour/mois/année \n Exemple: 21/04/2022")
+                                        receive_message = True
+
+                        event_date = None
+                        while receive_message is False:
+                            updates = bot.get_updates(new_offset)
+                            for current_update in updates:
+                                first_update_id = current_update['update_id']
+
+                                if 'message' in current_update:
+                                    if 'text' not in current_update['message']:
+                                        first_chat_text = 'New member'
+                                    else:
+                                        event_title = current_update['message']['text']
+                                        first_chat_id = current_update['message']['chat']['id']
+                                        event_title = current_update['message']['text']
+
+                                        bot.send_message(first_chat_id, "Très bien c'est enregistré")
+                                        receive_message = True
+
+                        Database.add_new_event_planning(first_chat_name, first_chat_id, event_title, event_date)
 
                     else:
                         print(response)

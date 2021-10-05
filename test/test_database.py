@@ -1,6 +1,6 @@
 import datetime
 import unittest
-
+import pandas as pd
 from src.database import Database
 
 
@@ -33,3 +33,9 @@ class TestDatabase(unittest.TestCase):
         database = Database()
         for item in database.get_event_planning_db().find():
             print(item)
+
+    def test_list_pandas_planning(self):
+        database = Database()
+        resp = database.get_event_planning_db().find()
+        df = pd.DataFrame(list(resp))
+        print(df)
